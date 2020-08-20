@@ -6,11 +6,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    // <BrowserRouter basename={process.env.PUBLIC_URL}>
         <React.StrictMode>
             <App />
-        </React.StrictMode>
-    </BrowserRouter>,
+        </React.StrictMode>,
+    // </BrowserRouter>
     document.getElementById('root')
 );
 
