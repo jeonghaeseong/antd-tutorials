@@ -6,11 +6,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter basename={"/antd-tutorials"}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <React.StrictMode>
             <App />
-        </BrowserRouter>
-    </React.StrictMode>,
+        </React.StrictMode>
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
