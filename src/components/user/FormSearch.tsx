@@ -1,51 +1,62 @@
-import React from 'react';
-import { Form, Row, Col, Checkbox } from 'antd';
+import React, { useState } from 'react';
+import { Form, Row, Col, Checkbox, Radio, Select, DatePicker } from 'antd';
+
+import { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 
 import AutoComplteEmail from '../AutoComplteEmail';
+import CmCdCascader from '../CmCdCascader';
+
+const { RangePicker } = DatePicker;
+
+const options: Array<CheckboxOptionType | string> = [
+    { label: '체크박스1', value: "1" },
+    { label: '체크박스2', value: "2" },
+    { label: '체크박스3', value: "3" },
+];
+
+const children: any = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Select.Option key={i.toString(36) + i} value={i}>{i.toString(36) + i}</Select.Option>);
+}
 
 const FormSearch = () => {
+
+    const [rdoVal, setRdoVal] = useState('');
+
+    const onChangeRadio = (e: any) => {
+        setRdoVal(() => e.target.value);
+    };
+
+    const handleChangeSelect = (value: string) => {
+        console.log(`selected ${value}`);
+    };
+
     return (
         <Form className="ant-advanced_search-form">
-            <Row gutter={24}>
-                <Col span={6}>
+            <Row gutter={[8, 8]}>
+                <Col span={4}>
                     <Form.Item
                         name={'Field99'}
-                        label={'Email'}
+                        label={'이메일'}
                         rules={[
-                        {
-                            required: true,
-                            message: 'Input something!',
-                        },
+                            {
+                                required: true,
+                                message: 'Input something!',
+                            },
                         ]}
                     >
                         <AutoComplteEmail />
                     </Form.Item>
                 </Col>
-                <Col span={3}>
+                <Col span={6}>
                     <Form.Item
                         name={'Field88'}
-                        label={'Checkbox'}
+                        label={'체크박스'}
                     >
-                        <Checkbox name="chck01" checked={true} value="01">체크박스1</Checkbox>
+                        <Checkbox.Group options={options} defaultValue={["1"]} >체크박스1</Checkbox.Group>
                     </Form.Item>
                 </Col>
-                <Col span={3}>
-                    <Form.Item
-                        name={'Field87'}
-                        label={'Checkbox'}
-                    >
-                        <Checkbox name="chck02" checked={false} value="02">체크박스2</Checkbox>
-                    </Form.Item>
-                </Col>
-                <Col span={3}>
-                    <Form.Item
-                        name={'Field86'}
-                        label={'Checkbox'}
-                    >
-                        <Checkbox name="chck03" checked={false} value="03">체크박스3</Checkbox>
-                    </Form.Item>
-                </Col>
-                {/* <Col span={6}>
+                <Col span={6}>
                     <Form.Item
                         name={'Field97'}
                         label={'공통코드'}
@@ -99,11 +110,14 @@ const FormSearch = () => {
                         ]}
                     >
                         <Radio.Group
-                            options={radioOptions}
                             onChange={onChangeRadio}
                             value={rdoVal}
                             optionType="button"
-                        />
+                        >
+                            <Radio value={1}>A</Radio>
+                            <Radio value={2}>B</Radio>
+                            <Radio value={3}>C</Radio>
+                        </Radio.Group>
                     </Form.Item>
                 </Col>
                 <Col span={6}>
@@ -126,7 +140,7 @@ const FormSearch = () => {
                             {children}
                         </Select>
                     </Form.Item>
-                </Col> */}
+                </Col>
                 {/* {getFields()} */}
             </Row>
             {/* <Row>

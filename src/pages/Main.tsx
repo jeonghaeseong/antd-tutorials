@@ -105,10 +105,6 @@ const Main = () => {
         );
     };
 
-    const handleChangeSelect = (value: string) => {
-        console.log(`selected ${value}`);
-    };
-
     useEffect(()=>{
         setColumns((state) => 
             columns.map((col, index) => ({
