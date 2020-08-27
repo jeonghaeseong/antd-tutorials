@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-import FormSearch from './FormSearch';
+import FormSearchContainer from '../../containers/FormSearchContainer';
 
 const User = () => {
     return (
@@ -13,7 +13,7 @@ const User = () => {
                 minHeight: 280
             }}
         >
-            <FormSearch />
+            <FormSearchContainer />
             <div className="search-result-list" style={{ padding: 10 }}>
                 {/* <Table bordered components={components} columns={columns} dataSource={data} /> */}
             </div>

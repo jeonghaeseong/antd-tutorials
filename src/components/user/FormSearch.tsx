@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Row, Col, Checkbox, Radio, Select, DatePicker } from 'antd';
+import { Field, reduxForm } from 'redux-form';
+import { Form, Row, Col, Checkbox, Radio, Select, DatePicker, Input } from 'antd';
 
 import { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 
@@ -19,7 +20,7 @@ for (let i = 10; i < 36; i++) {
   children.push(<Select.Option key={i.toString(36) + i} value={i}>{i.toString(36) + i}</Select.Option>);
 }
 
-const FormSearch = () => {
+const FormSearch = ({ onChange, fields }: any) => {
 
     const [rdoVal, setRdoVal] = useState('');
 
@@ -32,11 +33,12 @@ const FormSearch = () => {
     };
 
     return (
-        <Form className="ant-advanced_search-form">
+        <Form className="ant-advanced_search-form" initialValues={{Field88: '1'}} fields={fields} onFieldsChange={ (changedFields, allFileds) => { onChange(allFileds); } }>
             <Row gutter={[8, 8]}>
                 <Col span={4}>
+
                     <Form.Item
-                        name={'Field99'}
+                        name={'email'}
                         label={'이메일'}
                         rules={[
                             {
@@ -45,7 +47,7 @@ const FormSearch = () => {
                             },
                         ]}
                     >
-                        <AutoComplteEmail />
+                        <Input />
                     </Form.Item>
                 </Col>
                 <Col span={6}>
@@ -53,7 +55,8 @@ const FormSearch = () => {
                         name={'Field88'}
                         label={'체크박스'}
                     >
-                        <Checkbox.Group options={options} defaultValue={["1"]} >체크박스1</Checkbox.Group>
+                        
+                        <Checkbox.Group options={options}  >체크박스1</Checkbox.Group>
                     </Form.Item>
                 </Col>
                 <Col span={6}>
@@ -164,8 +167,11 @@ const FormSearch = () => {
                     </a>
                 </Col>
             </Row> */}
+            <button type="submit">Submit</button>
         </Form>
     );
 };
 
-export default FormSearch;
+export default reduxForm({
+    form: 'form'
+})(FormSearch);
